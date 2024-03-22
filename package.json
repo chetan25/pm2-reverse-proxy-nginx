@@ -1,0 +1,27 @@
+{
+  "name": "pm2-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pm2 start ecosystem.config.js",
+    "start": "pm2-runtime start ecosystem.config.js",
+    "stop": "pm2 stop ecosystem.config.js",
+    "restart": "pm2 restart ecosystem.config.js",
+    "start2": "pm2 start server-pm2.js -i max",
+    "reload": "pm2 reload ecosystem.config.js --execute-command 'cluster'",
+    "list": "pm2 list",
+    "monitor": "pm2 monit",
+    "monitor:web": "pm2 plus",
+    "logs": "pm2-runtime logs",
+    "pm2:init": "pm2 init simple"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.0",
+    "pm2": "^5.3.1"
+  }
+}
