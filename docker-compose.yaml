@@ -9,6 +9,7 @@ services:
     env_file: .env
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
+      - ${SERVER_PORT2}:${SERVER_PORT2}
 
   proxy:
     image: proxy

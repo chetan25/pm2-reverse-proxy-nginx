@@ -13,7 +13,7 @@ const delay = (duration) => {
 };
 
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.send(`hello world from ${process.env.SERVER_NO}`);
 });
 
 app.get("/delay", (req, res) => {
@@ -21,6 +21,6 @@ app.get("/delay", (req, res) => {
   res.send("Delayed");
 });
 
-app.listen(process.env.SERVER_PORT, () => {
-  console.log(`Listening at ${process.env.SERVER_PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Listening at ${process.env.PORT}`);
 });

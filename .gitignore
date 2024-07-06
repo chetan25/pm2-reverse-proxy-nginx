@@ -1,1 +1,4 @@
 node_modules/
+logs/error.json
+logs/log.json
+logs/out.json
