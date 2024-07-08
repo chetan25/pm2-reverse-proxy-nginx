@@ -34,10 +34,10 @@ Simple NodeJs server managed by PM2 for performance optimizations and reversed p
   ```
 
 - Basic non blocking operatiosn are:
-  - Reading from Ram or L1, L2 or L# cache
+  1. Reading from Ram or L1, L2 or L# cache
 - Basic blocking operations are:
-  - Reading from Disk or file or DB
-  - Making network call
+  1. Reading from Disk or file or DB
+  2. Making network call
 
 ## PM2
 
