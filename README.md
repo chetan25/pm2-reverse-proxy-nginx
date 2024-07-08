@@ -106,8 +106,28 @@ Nginx is a web server that can also be used as a reverse proxy, load balancer, m
 - We have created a `default.conf.template` file that holds the `server` directive that will be overriding the default one.
 - The env variables will be pluck in my the docker nginx image before starting the nginx server.
 
-> For `upstream` to work with nginx and docker locally we have to switch from using
-> `localhost` in upstream to the local ip instead `172.18.0.1`
+```js
+// default.conf.template file
+server {
+  listen ${NGINX_PORT};
+  server_name ${NGINX_HOST};
+
+  location / {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $host;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "Upgrade";
+
+    proxy_pass http://${SERVER_HOST}:${SERVER_PORT}/;
+
+    proxy_http_version 1.1;
+  }
+}
+
+```
+
+- For `upstream` to work with nginx and docker locally we have to switch from using
+  `localhost` in upstream to the local ip instead `172.18.0.1`
 
 ```js
 // instead of
@@ -122,13 +142,17 @@ upstream nodeapi {
 }
 ```
 
-### Commands
+## Local Development
 
-- To Run
+For local development make sure the following things are setup:
 
-  > docker composr uo --build -- to re build the image
-  > docker compose up -- if image exists
+1.  You have Desktop version of Docker installed and running.
+2.  Run `npm install` for installing the dependencies.
+3.  There is a default `.env` file provided feel free to update the values. But make sure the PORT values match the PM2 config.
+4.  Then run either of the commands below for starting a docker container
 
-- To check the logs of a container
-  > docker exec -it nginx-server sh
-  > here `nginx-server` is the name of the container we have specified in the docker compose file
+```js
+docker composr up --build ---> to re build the image
+docker compose up --> if image exists
+docker exec -it nginx-server sh ---> to checks thr logs in docker container. Here `nginx-server` is the name of the container.
+```
